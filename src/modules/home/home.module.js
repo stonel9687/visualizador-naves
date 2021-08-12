@@ -1,7 +1,15 @@
+import { useState } from 'react'
+import SelectShip from './component/selectShip'
+
 const Home = () => {
+  const [selectOn, setSelectOn] = useState(false)
+
+  const handleSelect = () => {
+    setSelectOn(true)
+  }
   return (
     <div>
-      <p>soy home</p>
+      <SelectShip handleSelect={handleSelect} selectOn={selectOn} />
     </div>
   )
 }
