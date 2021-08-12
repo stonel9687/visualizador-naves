@@ -2,11 +2,10 @@ import { useState } from 'react'
 import SelectShip from './component/selectShip'
 
 const Home = () => {
-  const [selectOn, setSelectOn] = useState(false)
+  const [selectOn, setSelectOn] = useState(true)
   const handleSelect = () => {
-    if ((selectOn = true)) {
-    } else {
-    }
+    let seleccion = selectOn ? false : true
+    setSelectOn(seleccion)
   }
   return (
     <div>
