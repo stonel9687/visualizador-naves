@@ -3,9 +3,10 @@ import SelectShip from './component/selectShip'
 
 const Home = () => {
   const [selectOn, setSelectOn] = useState(false)
-
   const handleSelect = () => {
-    setSelectOn(true)
+    if ((selectOn = true)) {
+    } else {
+    }
   }
   return (
     <div>
