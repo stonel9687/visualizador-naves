@@ -1,5 +1,5 @@
 import { Switch, Route } from 'react-router-dom'
-import Home from '../modules/home/home.module'
+import Home from '../modules/home/mainView'
 
 const Router = () => {
   return (
