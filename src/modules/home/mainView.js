@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import SelectShip from './component/selectShip'
 
 const Home = () => {
-  const [selectOn, setSelectOn] = useState(true)
+  const [selectOn, setSelectOn] = useState(false)
   const [selectName, setSelectName] = useState('Seleccion de Naves')
   const [shipDetail, setShipDetail] = useState([])
   const [shipList, setShipList] = useState([])

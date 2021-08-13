@@ -16,30 +16,21 @@ function SelectShip(props) {
             {selectOn && (
               <>
                 <div>
-                  <p>executor</p>
-                </div>
-                <div>
-                  <p>Death Star</p>
-                </div>
-                <div>
-                  <p>Y-Wing</p>
+                  {shipList.map((s) => {
+                    return (
+                      <p
+                        onClick={() => {
+                          shipDetails(s)
+                        }}
+                      >
+                        {s.name}
+                      </p>
+                    )
+                  })}
                 </div>
               </>
             )}
 
-            <div>
-              {shipList.map((s) => {
-                return (
-                  <p
-                    onClick={() => {
-                      shipDetails(s)
-                    }}
-                  >
-                    {s.name}
-                  </p>
-                )
-              })}
-            </div>
             <div className='bg-primary'>
               <div className='description'>
                 <h1>{shipDetail?.name}</h1>
