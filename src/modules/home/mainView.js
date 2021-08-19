@@ -6,13 +6,17 @@ const Home = () => {
   const [selectName, setSelectName] = useState('Seleccion de Naves')
   const [shipDetail, setShipDetail] = useState([])
   const [shipList, setShipList] = useState([])
+  const [showDetails, setShowDetails] = useState(false)
+  const [showPilots, setShowPilots] = useState([])
   const handleSelect = () => {
-    let seleccion = selectOn ? false : true
-    setSelectOn(seleccion)
+    //  let seleccion = selectOn ? false : true
+    setSelectOn(selectOn ? false : true)
   }
 
-  const shipDetails = (ship) => {
-    fetch(`${ship.url}`, {
+  let array = []
+
+  const shipDetails = async (ship) => {
+    await fetch(`${ship.url}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -21,10 +25,40 @@ const Home = () => {
         return resp.json()
       })
       .then((data) => {
-        console.log(data)
         setShipDetail(data)
+        setSelectName(data.name)
+        setShowDetails(true)
+        setSelectOn(false)
       })
       .catch((error) => console.log('Error:', error))
+    const pilots = ship.pilots
+
+    const newPilots = pilots.map(function (i) {
+      return i
+    })
+    //////////////////////////////////////////////////////////////
+    newPilots.forEach((iter) => {
+      array = [
+        ...array,
+        () => {
+          fetch(`${iter}`, {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+            .then((resp) => {
+              return resp.json()
+            })
+            .then((data) => {
+              console.log(`otra prueba`, data.name)
+            })
+            .catch((error) => console.log('Error:', error))
+        },
+      ]
+    })
+    ///////////////////////////////////////
+    console.log(array)
+    console.log(`nombre de pilotos`, newPilots)
   }
 
   const showShip = () => {
@@ -47,7 +81,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div>
+    <div className='mobile-bg'>
       <SelectShip
         handleSelect={handleSelect}
         selectOn={selectOn}
@@ -55,6 +89,8 @@ const Home = () => {
         shipList={shipList}
         shipDetails={shipDetails}
         shipDetail={shipDetail}
+        showDetails={showDetails}
+        showPilots={showPilots}
       />
     </div>
   )
